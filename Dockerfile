@@ -1,11 +1,13 @@
-FROM node:lts-alpine3.22
+FROM node:18-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package.json yarn.lock ./
 
 RUN yarn install --production
 
-CMD ["node", "src/index.js"]
+COPY . .
 
 EXPOSE 3000
+
+CMD ["node", "src/index.js"]
